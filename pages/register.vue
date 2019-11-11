@@ -99,6 +99,7 @@
 
                     this.$router.push('/')
                 } catch (e) {
+                    console.error(e);
                     this.error = e.message;
                 }
             }
