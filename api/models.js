@@ -33,13 +33,13 @@ const User = mongoose.model('User', UserSchema);
 const SiteSchema = new mongoose.Schema({
   owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
   name: {
-    type: String, required: true, minLength: 4, maxLength: 32
+    type: String, required: true, minLength: 3, maxLength: 32
   },
   publicName: {
-    type: String, required: true, minLength: 4, maxLength: 32, unique: true
+    type: String, required: true, minLength: 3, maxLength: 32, unique: true
   },
   url: {
-    type: String, required: true, minLength: 4, maxLength: 256
+    type: String, required: true, minLength: 3, maxLength: 256
   }
 }, {timestamps: true});
 

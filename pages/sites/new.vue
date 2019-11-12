@@ -6,13 +6,13 @@
         <div class="columns">
           <div class="column">
             <b-field label="Name">
-              <b-input type="string" placeholder="Example" v-model="name" minLength="4" maxLength="32"
+              <b-input type="string" placeholder="Example" v-model="name" minLength="3" maxLength="32"
                        required></b-input>
             </b-field>
           </div>
           <div class="column">
             <b-field label="Public name" :message="futureURL">
-              <b-input type="test" placeholder="Example" v-model="publicName" minLength="4" maxLength="32"
+              <b-input type="test" placeholder="Example" v-model="publicName" minLength="3" maxLength="32"
                        required></b-input>
             </b-field>
           </div>
@@ -21,7 +21,7 @@
         <div class="columns">
           <div class="column">
             <b-field label="URL">
-              <b-input type="url" placeholder="http://example.org" v-model="url" minLength="4" maxLength="256"
+              <b-input type="url" placeholder="http://example.org" v-model="url" minLength="3" maxLength="256"
                        required></b-input>
             </b-field>
           </div>
