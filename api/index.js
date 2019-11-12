@@ -69,19 +69,15 @@ function sendError(error, res, code) {
 
 router.post('/register', (req, res) => {
 
-  console.log(1,req.body);
 
   if (req.body.username && req.body.email && req.body.password) {
 
-    console.log(2)
     User.countDocuments({$or: [{'username': req.body.username}, {'email': req.body.email}]})
       .exec()
       .then(count => {
         if (count) {
-          console.log(3)
           sendError(new Error('Username or email address is taken.'), res)
         } else {
-          console.log(4)
           new User({
             username: req.body.username,
             email: req.body.email,
@@ -89,20 +85,16 @@ router.post('/register', (req, res) => {
           })
             .save()
             .then(savedUser => {
-              console.log(5)
               sign(savedUser)
                 .then(signedUser => {
-                  console.log(6)
                   res.json({token: signedUser})
                 })
                 .catch(err => {
-                  console.log(7)
                   console.error(err);
                   sendError(new Error('Failed to sign user.'), res);
                 })
             })
             .catch(err => {
-              console.log(8)
               console.error(err);
               sendError(new Error('Failed to create user.'), res);
             })
@@ -110,14 +102,12 @@ router.post('/register', (req, res) => {
         }
       })
       .catch(err => {
-        console.log(9)
         console.error(err);
         sendError(new Error('Failed to check if username and email address are available.'))
       })
 
 
   } else {
-    console.log(10)
     res.status(401).json({message: 'Bad credentials'})
   }
 
