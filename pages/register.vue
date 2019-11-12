@@ -83,25 +83,26 @@
 
         methods: {
             async register() {
-                try {
-                    await this.$axios.post('register', {
-                        username: this.username,
-                        email: this.email,
-                        password: this.password
-                    });
-
-                    await this.$auth.loginWith('local', {
-                        data: {
-                            email: this.email,
-                            password: this.password
-                        },
-                    });
-
-                    this.$router.push('/')
-                } catch (e) {
-                    console.error(e);
-                    this.error = e.message;
-                }
+                return this.$axios.post('register', {
+                    username: this.username,
+                    email: this.email,
+                    password: this.password
+                })
+                    .then(() => {
+                        return this.$auth.loginWith('local', {
+                            data: {
+                                email: this.email,
+                                password: this.password
+                            },
+                        });
+                    })
+                    .then(() => {
+                        this.$router.push('/')
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        this.error = err.message;
+                    })
             }
         }
     }

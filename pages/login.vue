@@ -16,6 +16,7 @@
                   class="input"
                   name="email"
                   v-model="email"
+                  required
                 >
               </div>
             </div>
@@ -27,6 +28,7 @@
                   class="input"
                   name="password"
                   v-model="password"
+                  required
                 >
               </div>
             </div>
@@ -63,18 +65,21 @@
 
         methods: {
             async login() {
-                try {
-                    await this.$auth.loginWith('local', {
-                        data: {
-                            email: this.email,
-                            password: this.password
-                        }
+                return this.$auth.loginWith('local', {
+                    data: {
+                        email: this.email,
+                        password: this.password
+                    }
+                })
+                    .then(() => {
+                        this.$router.push('/')
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        this.error = err.message;
                     })
 
-                    this.$router.push('/')
-                } catch (e) {
-                    this.error = e.response.data.message
-                }
+
             }
         }
     }
