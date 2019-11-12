@@ -33,6 +33,11 @@
             GraphResponseTime
         },
         props: ['site'],
+        computed:{
+            faviconURL(){
+                return this.site + '/favicon.ico'
+            }
+        }
         // data() {
         //     return {faviconURL: ''}
         // },
