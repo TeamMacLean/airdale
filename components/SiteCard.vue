@@ -35,7 +35,7 @@
         props: ['site'],
         computed:{
             faviconURL(){
-                return this.site + '/favicon.ico'
+                return this.site.url + '/favicon.ico'
             }
         }
         // data() {
